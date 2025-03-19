@@ -63,11 +63,15 @@ php artisan key:generate
 
 4. Execute as migrações e seeds (se aplicável):
 
-`php artisan migrate --seed`
+```
+php artisan migrate --seed
+```
 
 5. Inicie o servidor de desenvolvimento:
 
-`php artisan serve`
+```
+php artisan serve
+```
 
 
 ## 🤝 Contribuição
