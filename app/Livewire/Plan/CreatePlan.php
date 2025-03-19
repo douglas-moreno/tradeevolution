@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Livewire\Plan;
 
 use App\Models\Goal;
 use App\Models\Plan;
 use App\Models\Step;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use Livewire\Attributes\Computed;
 
@@ -20,10 +23,10 @@ class CreatePlan extends Component
     #[Computed]
     public function goals()
     {
-       return Goal::where('step_id', $this->step)->get(); 
+        return Goal::where('step_id', $this->step)->get();
     }
 
-    public function createPlan()
+    public function createPlan(): void
     {
         // dd($this->step, $this->goal, $this->name, $this->description, $this->month, $this->year);
         $this->validate([
@@ -44,14 +47,13 @@ class CreatePlan extends Component
             'year' => $this->year
         ]);
 
-        $this->redirect(route('plan.edit', $plan), navigate: true);
+        $this->redirect(route('plan.show', $plan), navigate: true);
     }
 
-    public function render()
+    public function render(): View
     {
         $steps = Step::all();
-        
-        // $goals = Goal::where('step_id', $this->step)->first();
+
         return view('livewire.plan.create-plan', compact('steps'));
     }
 }
